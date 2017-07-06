@@ -1,0 +1,46 @@
+Installation :
+    Download Package
+    Unzip
+    Add it to Path
+    Verify running : "terraform"
+
+
+Build Infrastructure:
+    Configuration -> create <>.tf file
+                  -> add provider, resource sections in json format
+    Execution plan -> run terraform plan
+
+    Apply         -> terraform apply
+                  -> terraform show
+
+    Destroy      -> terraform destroy
+
+
+Resource Dependencies -> This is done using Graph. Install Graphviz (brew install graphviz)
+                      -> terraform graph | dot -Tpng > graph.png
+
+
+Provisioners -> These are bootstrpping files/scripts that can be added to the tf files. As many as possible
+
+Input Variables -> We can variablize inputs to resource parameters
+
+                    1. Eg. access_key = "${var.access_key}"
+                    2. Create variables.tf file
+                            {
+                            variable "access_key" {}
+                            variable "secret_key" {}
+                            variable "region" {
+                                default = "us-east-1"
+                                }
+                            }
+                    3. create terraform.tfvars file and add the key value pairs
+
+                    -> Use TF_VAR_<> to use the environment variables.
+                    -> UI Input - if not defined , it can be provided during Execution
+                    -> Lists and maps can be used in vairbales.
+
+Output varibales -> add ouput section with the requied resource and value to be provided in the console. Almost like CFT.
+
+Modules -> repetable way of using tf files. add module section with the source can be any git link, flat file, etc
+
+Terraform Enterprise -> Need to explore
